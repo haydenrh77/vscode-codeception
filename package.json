@@ -1,15 +1,15 @@
 {
-  "name": "vscode-phpunit",
-  "description": "PHPUnit Test Explorer for VSCode",
-  "displayName": "PHPUnit Test Explorer",
+  "name": "vscode-codeception",
+  "description": "Codeception Test Explorer for VSCode",
+  "displayName": "Codeception Test Explorer",
   "icon": "img/icon.png",
-  "publisher": "recca0120",
-  "version": "3.2.1",
+  "publisher": "",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/recca0120/vscode-phpunit"
+    "type": "",
+    "url": ""
   },
   "engines": {
     "vscode": "^1.71.0"
@@ -24,7 +24,8 @@
     "phpunit",
     "testing",
     "unit test",
-    "unittest"
+    "unittest",
+    "codeception"
   ],
   "activationEvents": [
     "workspaceContains:**/*.php"
@@ -33,23 +34,23 @@
     "commands": [
       {
         "command": "phpunit.reload",
-        "title": "PHPUnit: Reload tests"
+        "title": "Codeception: Reload tests"
       },
       {
         "command": "phpunit.run-all",
-        "title": "PHPUnit: Run all tests"
+        "title": "Codeception: Run all tests"
       },
       {
         "command": "phpunit.run-file",
-        "title": "PHPUnit: Run tests in current file"
+        "title": "Codeception: Run tests in current file"
       },
       {
         "command": "phpunit.run-test-at-cursor",
-        "title": "PHPUnit: Run the test at the current cursor position"
+        "title": "Codeception: Run the test at the current cursor position"
       },
       {
         "command": "phpunit.rerun",
-        "title": "PHPUnit: Repeat the last test run"
+        "title": "Codeception: Repeat the last test run"
       }
     ],
     "keybindings": [
@@ -75,31 +76,29 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "PHPUnit Configuration",
+      "title": "Codeception Configuration",
       "properties": {
-        "phpunit.php": {
-          "type": "string",
-          "description": "Absolute path to php. Fallback to global php if it exists on the command line.",
-          "default": "php"
-        },
         "phpunit.phpunit": {
           "type": "string",
-          "description": "Path to phpunit. Can be the phpunit file or phpunit.phar.\n\nAutomatically finds it in common places:\n  - Composer vendor directory\n  - phpunit.phar in your project\n  - phpunit (or phpunit.bat for windows) globally on the command line",
-          "default": "vendor/bin/phpunit"
+          "description": "Path to codeception.",
+          "default": "vendor/bin/codecept"
         },
         "phpunit.command": {
           "type": "string",
           "description": "Custom command to run. Ex: `docker exec -t container_name`.",
-          "default": null
+          "default": "docker exec -t docker-php-fpm-1 /bin/bash -c"
         },
         "phpunit.args": {
           "type": "array",
           "default": [],
-          "description": "Any phpunit args (phpunit --help) E.g. --configuration ${workspaceFolder}/phpunit.xml.dist"
+          "description": "Any codeception args (codeception --help)"
         },
         "phpunit.paths": {
           "type": "object",
-          "description": "Path mappings for your virtual/remote environments. Ex: { \"local/workspace/folder\": \"docker/workspace/folder\" }"
+          "description": "Path mappings for your virtual/remote environments. Ex: { \"local/workspace/folder\": \"docker/workspace/folder\" }",
+          "default": {
+            "${workspaceFolder}": "/var/www/html"
+          }
         },
         "phpunit.clearOutputOnRun": {
           "type": "boolean",

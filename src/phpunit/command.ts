@@ -136,13 +136,14 @@ export abstract class Command {
     }
 
     protected getCommand() {
-        return [...this.getCommendPrefix(), ...this.getPHPUnitWithArgs()];
+        return [...this.getCommandPrefix(), ...this.getPHPUnitWithArgs()];
     }
 
     protected getPHPUnitWithArgs() {
         return this.setParaTestFunctional([
-            this.phpPath(),
             this.phpUnitPath(),
+            "run",
+            "Unit",
             ...this.getArguments(),
         ]);
     }
@@ -156,12 +157,8 @@ export abstract class Command {
         return (this.configuration.get('phpunit') as string) ?? '';
     }
 
-    private getCommendPrefix() {
+    private getCommandPrefix() {
         return ((this.configuration.get('command') as string) ?? '').split(' ');
-    }
-
-    private phpPath() {
-        return (this.configuration.get('php') as string) ?? '';
     }
 
     private getArguments(): string[] {
@@ -178,13 +175,13 @@ export abstract class Command {
         });
 
         return Object.entries(argv)
-            .filter(([key]) => !['teamcity', 'colors', 'testdox', 'c'].includes(key))
+            .filter(([key]) => !['report', 'testdox', 'c'].includes(key))
             .reduce(
                 (args: any, [key, value]) => [...parseValue(key, value), ...args],
                 _.map((v) => typeof v === 'number' ? v : decodeURIComponent(v)),
             )
             .map((input: string) => this.getPathReplacer().localToRemote(input))
-            .concat('--colors=never', '--teamcity');
+            .concat('--no-colors', '--ext=Tests\\Support\\Helper\\TeamCityReporter');
     }
 
     private getPathReplacer() {

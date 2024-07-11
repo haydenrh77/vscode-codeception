@@ -92,11 +92,11 @@ export class TestFile {
     private asFilter(test: Test) {
         return test.children.length > 0
             ? ''
-            : `--filter '^.*::(${this.asDeps(test).join('|')})( with data set .*)?$'`;
+            : `'--override=groups: custom: [${this.asDeps(test).join(':')}]' '--group=custom'`;
     }
 
     private asDeps(test: Test) {
-        return [test.method, ...(test.annotations.depends ?? [])];
+        return [encodeURIComponent(test.file), test.method];
     }
 
     private asTestItem(ctrl: TestController, test: Test, sortText: number | string) {
