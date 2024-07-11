@@ -181,7 +181,7 @@ export abstract class Command {
                 _.map((v) => typeof v === 'number' ? v : decodeURIComponent(v)),
             )
             .map((input: string) => this.getPathReplacer().localToRemote(input))
-            .concat('--no-colors', '--ext=Tests\\Support\\Helper\\TeamCityReporter');
+            .concat('--no-colors', '--ext=Tests\\Support\\Extension\\TeamCityReporter');
     }
 
     private getPathReplacer() {
