@@ -35,7 +35,6 @@ export class TestResultParser implements IParser<Result | undefined> {
     }
 
     private doParse(text: string) {
-        console.log(text);
         text = text
             .trim()
             .replace(this.pattern, '')

@@ -7,13 +7,13 @@ export class CommandHandler {
     }
 
     runAll() {
-        return commands.registerCommand('phpunit.run-all', () => {
+        return commands.registerCommand('codeception.run-all', () => {
             this.run(undefined);
         });
     }
 
     runFile() {
-        return commands.registerCommand('phpunit.run-file', () => {
+        return commands.registerCommand('codeception.run-file', () => {
             const testFile = this.findTestFile();
 
             if (testFile) {
@@ -23,7 +23,7 @@ export class CommandHandler {
     }
 
     runTestAtCursor() {
-        return commands.registerCommand('phpunit.run-test-at-cursor', () => {
+        return commands.registerCommand('codeception.run-test-at-cursor', () => {
             const testFile = this.findTestFile();
 
             if (testFile) {
@@ -35,7 +35,7 @@ export class CommandHandler {
     }
 
     rerun(handler: Handler) {
-        return commands.registerCommand('phpunit.rerun', () => {
+        return commands.registerCommand('codeception.rerun', () => {
             const latestTestRunRequest = handler.getLatestTestRunRequest();
 
             return latestTestRunRequest

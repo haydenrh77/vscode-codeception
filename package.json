@@ -3,7 +3,7 @@
   "description": "Codeception Test Explorer for VSCode",
   "displayName": "Codeception Test Explorer",
   "icon": "img/icon.png",
-  "publisher": "",
+  "publisher": "hhackler",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
@@ -33,44 +33,44 @@
   "contributes": {
     "commands": [
       {
-        "command": "phpunit.reload",
+        "command": "codeception.reload",
         "title": "Codeception: Reload tests"
       },
       {
-        "command": "phpunit.run-all",
+        "command": "codeception.run-all",
         "title": "Codeception: Run all tests"
       },
       {
-        "command": "phpunit.run-file",
+        "command": "codeception.run-file",
         "title": "Codeception: Run tests in current file"
       },
       {
-        "command": "phpunit.run-test-at-cursor",
+        "command": "codeception.run-test-at-cursor",
         "title": "Codeception: Run the test at the current cursor position"
       },
       {
-        "command": "phpunit.rerun",
+        "command": "codeception.rerun",
         "title": "Codeception: Repeat the last test run"
       }
     ],
     "keybindings": [
       {
         "key": "cmd+t cmd+s",
-        "command": "phpunit.run-all"
+        "command": "codeception.run-all"
       },
       {
         "key": "cmd+t cmd+f",
-        "command": "phpunit.run-file",
+        "command": "codeception.run-file",
         "when": "editorTextFocus && editorLangId == php"
       },
       {
         "key": "cmd+t cmd+t",
-        "command": "phpunit.run-test-at-cursor",
+        "command": "codeception.run-test-at-cursor",
         "when": "editorTextFocus && editorLangId == php"
       },
       {
         "key": "cmd+t cmd+l",
-        "command": "phpunit.rerun",
+        "command": "codeception.rerun",
         "when": "editorTextFocus && editorLangId == php"
       }
     ],
@@ -78,41 +78,41 @@
       "type": "object",
       "title": "Codeception Configuration",
       "properties": {
-        "phpunit.phpunit": {
+        "codeception.codeception": {
           "type": "string",
           "description": "Path to codeception.",
           "default": "vendor/bin/codecept"
         },
-        "phpunit.command": {
+        "codeception.command": {
           "type": "string",
           "description": "Custom command to run. Ex: `docker exec -t container_name`.",
           "default": "docker exec -t docker-php-fpm-1 /bin/bash -c"
         },
-        "phpunit.args": {
+        "codeception.args": {
           "type": "array",
           "default": [],
           "description": "Any codeception args (codeception --help)"
         },
-        "phpunit.paths": {
+        "codeception.paths": {
           "type": "object",
           "description": "Path mappings for your virtual/remote environments. Ex: { \"local/workspace/folder\": \"docker/workspace/folder\" }",
           "default": {
             "${workspaceFolder}": "/var/www/html"
           }
         },
-        "phpunit.clearOutputOnRun": {
+        "codeception.clearOutputOnRun": {
           "type": "boolean",
           "default": true,
           "description": "True will clear the output when we run a new test. False will leave the output after every test."
         },
-        "phpunit.showAfterExecution": {
+        "codeception.showAfterExecution": {
           "type": "string",
           "enum": [
             "always",
             "onFailure",
             "never"
           ],
-          "default": "onFailure",
+          "default": "always",
           "description": "Specify if the test report will automatically be shown after execution",
           "scope": "application"
         }

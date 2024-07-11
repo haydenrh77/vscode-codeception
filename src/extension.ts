@@ -7,10 +7,10 @@ import { CommandHandler } from './command-handler';
 const testData = new Map<string, TestFile>();
 
 export async function activate(context: vscode.ExtensionContext) {
-    const configuration = new Configuration(vscode.workspace.getConfiguration('phpunit'));
+    const configuration = new Configuration(vscode.workspace.getConfiguration('codeception'));
     context.subscriptions.push(
         vscode.workspace.onDidChangeConfiguration(() =>
-            configuration.updateWorkspaceConfiguration(vscode.workspace.getConfiguration('phpunit')),
+            configuration.updateWorkspaceConfiguration(vscode.workspace.getConfiguration('codeception')),
         ),
     );
 
@@ -85,7 +85,7 @@ export async function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('phpunit.reload', async () => {
+        vscode.commands.registerCommand('codeception.reload', async () => {
             await Promise.all(
                 getWorkspaceTestPatterns().map(({ pattern, exclude }) =>
                     findInitialFiles(ctrl, pattern, exclude),

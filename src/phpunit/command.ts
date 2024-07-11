@@ -154,7 +154,7 @@ export abstract class Command {
     ): PathReplacer;
 
     private phpUnitPath() {
-        return (this.configuration.get('phpunit') as string) ?? '';
+        return (this.configuration.get('codeception') as string) ?? '';
     }
 
     private getCommandPrefix() {
